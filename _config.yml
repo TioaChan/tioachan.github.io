@@ -71,6 +71,15 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Post
+# 字数统计
+# https://co5.me/2018/180613-wordcount.html
+symbols_count_time:
+	symbols: true
+	time: true
+	total_symbols: true
+	total_time: true
+
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
