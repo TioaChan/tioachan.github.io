@@ -36,7 +36,7 @@ qm importdisk 200 hassos_ova-5.13.qcow2 local-lvm
 
 ## 安装
 
-根据官方文档，在 Supervisor 面板中安装并启动 SSH 插件，执行安装命令即可。
+根据![官方文档](https://hacs.xyz/docs/installation/installation/#home-assistant-os)，在 Supervisor 面板中安装并启动 SSH 插件，执行安装命令即可。
 
 ```bash
 wget -q -O - https://install.hacs.xyz | bash -
