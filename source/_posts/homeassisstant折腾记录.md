@@ -36,7 +36,7 @@ qm importdisk 200 hassos_ova-5.13.qcow2 local-lvm
 
 ## 安装
 
-根据![官方文档](https://hacs.xyz/docs/installation/installation/#home-assistant-os)，在 Supervisor 面板中安装并启动 SSH 插件，执行安装命令即可。
+根据[官方文档](https://hacs.xyz/docs/installation/installation/#home-assistant-os)，在 Supervisor 面板中安装并启动 SSH 插件，执行安装命令即可。
 
 ```bash
 wget -q -O - https://install.hacs.xyz | bash -
@@ -46,12 +46,16 @@ wget -q -O - https://install.hacs.xyz | bash -
 
 成功安装后，在 homeassisstan 的配置-集成中添加 HACS 集成，如果没有 HACS，尝试清除缓存（可以使用 Ctrl+F5 刷新）或在配置-服务配置中重启。
 
-## 小米多模网关
+# 小米多模网关
 
-进入 HACS，点击右下角的添加存储库，搜索`Xiaomi Gateway 3`并安装即可，安装之后同样需要在 homeassisstan 的配置-集成中添加 Xiaomi Gateway 3
+进入 HACS，点击右下角的添加存储库，搜索`Xiaomi Gateway 3`并安装即可，安装之后同样需要在 homeassisstan 的配置-集成中添加 Xiaomi Gateway 3。
+
+## 禁止升级
+
+在设备实体页面，打开`Xiaomi Gateway 3 Firmware Lock`的开关
 
 # 参考
 
--[1][hacs installation](https://hacs.xyz/docs/installation/installation/#home-assistant-os)
+-   [1] [hacs installation](https://hacs.xyz/docs/installation/installation/#home-assistant-os)
 
--[2][xiaomigateway3 installation](https://github.com/AlexxIT/XiaomiGateway3#install)
+-   [2] [xiaomigateway3 installation](https://github.com/AlexxIT/XiaomiGateway3#install)
