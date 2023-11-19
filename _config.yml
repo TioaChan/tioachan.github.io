@@ -113,7 +113,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
     type: git
-    repo: git@github.com:TioaChan/tioachan.github.io.git
+    repo: https://github.com/TioaChan/tioachan.github.io.git
 
 # https://www.itrhx.com/2019/09/29/A53-hexo-backup/
 backup:
