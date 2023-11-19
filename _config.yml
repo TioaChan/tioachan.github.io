@@ -71,6 +71,15 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Post
+# 字数统计
+# https://co5.me/2018/180613-wordcount.html
+symbols_count_time:
+	symbols: true
+	time: true
+	total_symbols: true
+	total_time: true
+
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
@@ -104,12 +113,12 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
     type: git
-    repo: https://github.com/TioaChan/tioachan.github.io
+    repo: git@github.com:TioaChan/tioachan.github.io.git
 
 # https://www.itrhx.com/2019/09/29/A53-hexo-backup/
 backup:
     type: git
     message: backup
-    theme: landscape
+    theme: next
     repository:
         github: https://github.com/TioaChan/tioachan.github.io,hexo
