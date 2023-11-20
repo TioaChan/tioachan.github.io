@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="在DSM7.0+系统上使用Docker安装带Supervisor的HomeAssistant">
+<meta property="og:url" content="http://example.com/2022/04/03/%E5%9C%A8DSM7.0+%E7%B3%BB%E7%BB%9F%E4%B8%8A%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%A6Supervisor%E7%9A%84HomeAssistant/index.html">
+<meta property="og:site_name" content="Tioa&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/20220403192539.png">
+<meta property="og:image" content="http://example.com/images/20220403191505.png">
+<meta property="og:image" content="http://example.com/images/20220403191827.png">
+<meta property="og:image" content="http://example.com/images/20220403192248.png">
+<meta property="og:image" content="http://example.com/images/20220403192455.png">
+<meta property="og:image" content="http://example.com/images/20220501125803.png">
+<meta property="og:image" content="http://example.com/images/20220501130305.png">
+<meta property="og:image" content="http://example.com/images/20220501130704.png">
+<meta property="og:image" content="http://example.com/images/20220501130735.png">
+<meta property="article:published_time" content="2022-04-03T11:13:38.000Z">
+<meta property="article:modified_time" content="2023-11-20T01:20:17.473Z">
+<meta property="article:author" content="Tioa">
+<meta property="article:tag" content="HomeAssisstant">
+<meta property="article:tag" content="Synology">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="DSM7.0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/20220403192539.png">
+
+
+<link rel="canonical" href="http://example.com/2022/04/03/%E5%9C%A8DSM7.0+%E7%B3%BB%E7%BB%9F%E4%B8%8A%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%A6Supervisor%E7%9A%84HomeAssistant/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>在DSM7.0+系统上使用Docker安装带Supervisor的HomeAssistant | Tioa's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Tioa's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">额外问题</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tioa</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/03/%E5%9C%A8DSM7.0+%E7%B3%BB%E7%BB%9F%E4%B8%8A%E4%BD%BF%E7%94%A8Docker%E5%AE%89%E8%A3%85%E5%B8%A6Supervisor%E7%9A%84HomeAssistant/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tioa">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tioa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在DSM7.0+系统上使用Docker安装带Supervisor的HomeAssistant
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-03 19:13:38" itemprop="dateCreated datePublished" datetime="2022-04-03T19:13:38+08:00">2022-04-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-11-20 09:20:17" itemprop="dateModified" datetime="2023-11-20T09:20:17+08:00">2023-11-20</time>
+      </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>471</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/20220403192539.png" alt="homeassisstant"></p>
+<p><img src="/images/20220403191505.png" alt="homeassisstant with supervisor on dsm 7.0"></p>
+<span id="more"></span>
+
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>首先创建一个文件夹用于存放 homeassisstant 的文件，并赋予 Everyone 完全控制的权限</p>
+<p><img src="/images/20220403191827.png" alt="homeassisstant folder"></p>
+<p>然后在<a target="_blank" rel="noopener" href="https://gist.github.com/maeneak/851e883eca7cddd7114f7eaed201ca9d">HASSIO (Home Assistant Supervised) for Synology DSM 7 (Unsupported Installation but allows updates and fully functional)</a>下载提供的 docker compose 配置文件，并修改路径。</p>
+<p><img src="/images/20220403192248.png" alt="docker compose"></p>
+<p>启动即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up --detach</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20220403192455.png" alt="observer"></p>
+<h2 id="额外问题"><a href="#额外问题" class="headerlink" title="额外问题"></a>额外问题</h2><p>重新进行<code>docker-compose down</code>和<code>docker-compose up --detach</code>后，遇到了没有由<code>qemux86-64-homeassistant</code>镜像启动的名称为<code>homeassistant</code>容器的问题。<br><img src="/images/20220501125803.png" alt="homeassistant container"><br>通过查看<code>hassio_superviosr</code>日志，类比其他容器的启动日志片段，尝试删除<code>ghcr.io/home-assistant/qemux86-64-homeassistant</code>，再次执行<code>docker-compose up --detach</code>，问题解决。<br>问题日志：<br><img src="/images/20220501130305.png" alt="superviosr log"><br>删除镜像后再次启动的日志：<br><img src="/images/20220501130704.png" alt="superviosr log"><br><img src="/images/20220501130735.png" alt="superviosr log"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HomeAssisstant/" rel="tag"># HomeAssisstant</a>
+              <a href="/tags/Synology/" rel="tag"># Synology</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/DSM7-0/" rel="tag"># DSM7.0</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/01/Powershell%E4%B8%AD%E5%B0%86markdown%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%9B%BE%E7%89%87/" rel="prev" title="Powershell中将markdown转换为图片">
+                  <i class="fa fa-chevron-left"></i> Powershell中将markdown转换为图片
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/10/%E6%B2%B3%E5%8D%97%E8%81%94%E9%80%9A%E5%AE%BD%E5%B8%A6%E4%BD%BF%E7%94%A8%E7%8C%AB%E6%A3%92%E6%8B%A8%E5%8F%B7%E8%AE%B0%E5%BD%95/" rel="next" title="河南联通宽带GPON使用猫棒拨号记录">
+                  河南联通宽带GPON使用猫棒拨号记录 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tioa</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">26k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">24 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
