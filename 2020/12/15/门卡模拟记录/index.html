@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tioachan.dev","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="换了新地方，用上了门禁卡，寻思着手机和手环上的门卡模拟功能终于有了用途，以此文记录折腾过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="门卡模拟记录">
+<meta property="og:url" content="https://tioachan.dev/2020/12/15/%E9%97%A8%E5%8D%A1%E6%A8%A1%E6%8B%9F%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Tioa&#39;s Blog">
+<meta property="og:description" content="换了新地方，用上了门禁卡，寻思着手机和手环上的门卡模拟功能终于有了用途，以此文记录折腾过程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tioachan.dev/images/20210103202704.jpg">
+<meta property="og:image" content="https://tioachan.dev/images/v2-81243b63e0da942ea4d04ee2180bcf13_1440w.jpg">
+<meta property="og:image" content="https://tioachan.dev/images/20210118163400.png">
+<meta property="article:published_time" content="2020-12-15T12:40:53.000Z">
+<meta property="article:modified_time" content="2024-04-15T09:35:15.945Z">
+<meta property="article:author" content="Tioa">
+<meta property="article:tag" content="pn532">
+<meta property="article:tag" content="门卡模拟">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tioachan.dev/images/20210103202704.jpg">
+
+
+<link rel="canonical" href="https://tioachan.dev/2020/12/15/%E9%97%A8%E5%8D%A1%E6%A8%A1%E6%8B%9F%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tioachan.dev/2020/12/15/%E9%97%A8%E5%8D%A1%E6%A8%A1%E6%8B%9F%E8%AE%B0%E5%BD%95/","path":"2020/12/15/门卡模拟记录/","title":"门卡模拟记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>门卡模拟记录 | Tioa's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tioa's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%8A%A0%E5%AF%86%E5%8D%A1"><span class="nav-number">3.1.</span> <span class="nav-text">部分加密卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E5%8A%A0%E5%AF%86%E5%8D%A1"><span class="nav-number">3.2.</span> <span class="nav-text">完全加密卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F"><span class="nav-number">3.3.</span> <span class="nav-text">模拟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tioa</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tioachan.dev/2020/12/15/%E9%97%A8%E5%8D%A1%E6%A8%A1%E6%8B%9F%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Tioa">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tioa's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="门卡模拟记录 | Tioa's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          门卡模拟记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-15 20:40:53" itemprop="dateCreated datePublished" datetime="2020-12-15T20:40:53+08:00">2020-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-15 17:35:15" itemprop="dateModified" datetime="2024-04-15T17:35:15+08:00">2024-04-15</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>507</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>换了新地方，用上了门禁卡，寻思着手机和手环上的门卡模拟功能终于有了用途，以此文记录折腾过程。</p>
+<span id="more"></span>
+
+<h2 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h2><ul>
+<li><p>PN532，针脚焊上或拿胶带固定就可<br><img src="/images/20210103202704.jpg" alt="PN532"></p>
+</li>
+<li><p><del>CUID 白卡</del></p>
+</li>
+<li><p>一加 7 Pro</p>
+</li>
+<li><p><del>小米手环 5</del></p>
+</li>
+</ul>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><ul>
+<li>MifareOneTool</li>
+<li><a target="_blank" rel="noopener" href="https://alumnialbany-my.sharepoint.com/:u:/g/personal/asset_alumni_albany_edu/Efc5jPpVPndEiSeBT-EW6-sB6S6wRpzLBKStXHl6DWRPmg?e=hYUY8c">PN532 驱动</a>（注：Windows 更新的驱动不可用）</li>
+<li>蛐蛐的 PN532_GUI</li>
+</ul>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="部分加密卡"><a href="#部分加密卡" class="headerlink" title="部分加密卡"></a>部分加密卡</h3><p>在<code>MifareOneTool</code>的<code>复制卡模式</code>页点击<code>一键解原卡</code>，破解成功保存 dump 文件。</p>
+<h3 id="完全加密卡"><a href="#完全加密卡" class="headerlink" title="完全加密卡"></a>完全加密卡</h3><p>由于本人过于菜鸡而选择使用<code>蛐蛐的 PN532_GUI</code>这个软件在 Windows 下进行破解，跑了一夜密钥也是破解出来了，跑出来的密钥是<code>fffffffe</code>，太草了。</p>
+<p><img src="/images/v2-81243b63e0da942ea4d04ee2180bcf13_1440w.jpg" alt="草，一种名词"></p>
+<p>跑出密钥之后回到<code>MifareOneTool</code>，在<code>复制卡模式</code>页点击<code>知一密破解</code>，填入跑出来的密钥，保存 dump 文件。</p>
+<h3 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h3><p>打开<a target="_blank" rel="noopener" href="https://www.apkmirror.com/apk/oneplus-ltd/bus-card/"><code>一加公交卡</code></a>，生成一张空白门卡，选择立即录入，将手机摄像头部分放在读卡器上，在<code>MifareOneTool</code>的<code>复制卡模式</code>页依次点击<code>扫描卡片</code>、<code>检测加密</code>、<code>写C/FUID卡</code>，选择保存的 dump 文件，写入即可。</p>
+<p><img src="/images/20210118163400.png" alt="MifareOneTool"></p>
+<hr>
+<p><strong>注意</strong></p>
+<p>我并没有先去生成一个包含卡片 ID 的空白卡，因为我发现直接对手机生成的空白卡直接写入 dump 文件即可通过门禁，手环也是。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://blog.czbix.com/clone-MIFARE-Classic-card.html">Mifare 门禁卡复制 - 疯狂的盒子</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pn532/" rel="tag"># pn532</a>
+              <a href="/tags/%E9%97%A8%E5%8D%A1%E6%A8%A1%E6%8B%9F/" rel="tag"># 门卡模拟</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/16/%E4%BD%BF%E7%94%A8Layui%E7%9A%84%E4%B8%8A%E4%BC%A0%E7%BB%84%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%84%E7%90%86%E5%B9%B6%E5%93%8D%E5%BA%94%E6%96%87%E4%BB%B6%E6%B5%81%E8%87%B3%E5%89%8D%E7%AB%AF%E4%BF%9D%E5%AD%98/" rel="prev" title="使用Layui的上传组件实现文件上传处理并响应文件流至前端保存">
+                  <i class="fa fa-angle-left"></i> 使用Layui的上传组件实现文件上传处理并响应文件流至前端保存
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/01/18/ZeroTier%E7%A7%81%E6%9C%89Moon%E8%8A%82%E7%82%B9%E8%AE%B0%E5%BD%95/" rel="next" title="ZeroTier 私有Moon节点记录">
+                  ZeroTier 私有Moon节点记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Tioa</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">27k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">49 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
