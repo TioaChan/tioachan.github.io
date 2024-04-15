@@ -1,0 +1,44 @@
+name: Deploy Blog
+
+on:
+    push:
+        branches:
+            - hexo
+
+jobs:
+    build:
+        name: Deploy Blog
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v2
+              with:
+                  repository: TioaChan/tioachan.github.io
+                  ref: hexo
+                  fetch-depth: 1
+
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20.12.2
+
+            - name: Configuration environment
+              env:
+                  HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
+              run: |
+                  sudo timedatectl set-timezone "Asia/Shanghai"
+                  git config --global user.name TioaChan
+                  git config --global user.email 8370450+TioaChan@users.noreply.github.com
+                  mkdir -p ~/.ssh/
+                  echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+            - name: Install dependencies
+              run: |
+                  sudo npm install hexo-cli -g && npm install
+
+            - name: Hexo Deploy
+              run: |
+                  hexo clean && hexo generate && hexo deploy
